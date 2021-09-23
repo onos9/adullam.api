@@ -18,6 +18,7 @@
 - course_offering
 - course_involvement
 
+# Course Info
 - student_course_details
 - ta_related_to_course
 - graders_related_to_course
