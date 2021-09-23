@@ -1,24 +1,30 @@
 
 # Discussion (chat)
-- Discussion board for lectures (chat)
-- discussion board for assignment (chat)
+- Discussion_board_for_lectures
+- discussion_board_for_assignment
 
 # Users
-- student `list of student`
-- ta `list of ta`
-- grader `list of graders`
-- teacher `list of teachers`
+- student
+- ta
+- grader
+- teacher
+- user_type
 
 # course
-- course category
-- course details
-- course term
-- course creator
-- course offering
-- course involvement
+- course_category
+- course_details
+- course_term
+- course_creator
+- course_offering
+- course_involvement
 
-- student course details
-- student grading
-- ta related to course
-- graders related to course
-- teachers related to course
+- student_course_details
+- ta_related_to_course
+- graders_related_to_course
+- teachers related_to_course
+
+# Assignment
+- assignment_submission
+- rating
+- grading
+- student_grading
