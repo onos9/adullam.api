@@ -1,3 +1,7 @@
 
-//- Discussion_board_for_lectures
-//- discussion_board_for_assignment
+package api
+
+func discussion_board_for_lectures(){}
+
+
+func discussion_board_for_assignment(){}
