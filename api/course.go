@@ -1,6 +1,13 @@
-//- course_category
-//- course_details
-//- course_term
-//- course_creator
-//- course_offering
-//- course_involvement
+package api
+
+func course_category(){}
+
+func course_details(){}
+
+func course_term(){}
+
+func course_creator(){}
+
+func course_offering(){}
+
+func course_involvement(){}
