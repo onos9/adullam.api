@@ -1,4 +1,4 @@
-package auth
+package server
 
 import (
 	"fmt"
@@ -7,13 +7,13 @@ import (
 	"github.com/golang-jwt/jwt"
 )
 
-func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handler {
+func isAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Header["Token"] != nil {
 
 			token, err := jwt.Parse(r.Header["Token"][0], func(token *jwt.Token) (interface{}, error) {
 				if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-					return nil, fmt.Errorf(("Invalid Signing Method"))
+					return nil, fmt.Errorf(("invalid signing method"))
 				}
 				aud := "billing.jwtgo.io"
 				checkAudience := token.Claims.(jwt.MapClaims).VerifyAudience(aud, false)
@@ -27,10 +27,10 @@ func IsAuthorized(endpoint func(http.ResponseWriter, *http.Request)) http.Handle
 					return nil, fmt.Errorf(("invalid iss"))
 				}
 
-				return MySigningKey, nil
+				return mySigningKey, nil
 			})
 			if err != nil {
-				fmt.Fprintf(w, err.Error())
+				fmt.Fprintf(w,"ERROR: %s\n", err.Error())
 			}
 
 			if token.Valid {

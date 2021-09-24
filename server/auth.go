@@ -1,17 +1,16 @@
-package auth
+package server
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt"
 )
-var MySigningKey = []byte(os.Getenv("SECRET_KEY"))
+var mySigningKey = []byte(os.Getenv("SECRET_KEY"))
 
-func GetJWT() (string, error) {
+func getJWT() (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 
 	claims := token.Claims.(jwt.MapClaims)
@@ -22,7 +21,7 @@ func GetJWT() (string, error) {
 	claims["iss"] = "jwtgo.io"
 	claims["exp"] = time.Now().Add(time.Minute * 1).Unix()
 
-	tokenString, err := token.SignedString(MySigningKey)
+	tokenString, err := token.SignedString(mySigningKey)
 
 	if err != nil {
 		fmt.Errorf("Something Went Wrong: %s", err.Error())
@@ -32,8 +31,8 @@ func GetJWT() (string, error) {
 	return tokenString, nil
 }
 
-func Authenticate(w http.ResponseWriter, r *http.Request) {
-	validToken, err := GetJWT()
+func authenticate(w http.ResponseWriter, r *http.Request) {
+	validToken, err := getJWT()
 	fmt.Println(validToken)
 	if err != nil {
 		fmt.Println("Failed to generate token")
