@@ -1,3 +1,4 @@
+package db
 
 //- assignment_submission
 //- rating

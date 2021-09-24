@@ -1,5 +1,5 @@
 
-package api
+package db
 
 func discussion_board_for_lectures(){}
 
