@@ -6,7 +6,9 @@ import (
 	"net/http"
 )
 
-func payloadHandler(){}
+func payloadHandler(data map[string]interface{}) map[string]interface {
+
+}
 
 func request(w http.ResponseWriter, r *http.Request) {
 	// Make sure we can only be called with an HTTP POST request.
@@ -32,18 +34,13 @@ func request(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	m, ok := msg["name"].(string)
-	if !ok {
-		m = "default"
-	}
-
 	d, ok := msg["data"].(map[string]interface{})
 	if !ok {
 		d = make(map[string]interface{})
 	}
 
 	// Create Job and push the work onto the jobQueue.
-	job := Job{method: m, data: d}
+	job := Job{data: d, writer: w}
 	queue <- job
 
 	// Render success.

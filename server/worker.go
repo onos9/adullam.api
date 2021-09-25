@@ -4,15 +4,16 @@ package server
 import (
 	_ "expvar"
 	"fmt"
+	"net/http"
 	_ "net/http/pprof"
 )
 
 var queue chan Job
 
 // Job holds the attributes needed to perform unit of work.
-type Job struct {
-	method		string 					
+type Job struct {					
 	data		map[string]interface{}
+	writer 		http.ResponseWriter
 }
 
 // NewWorker creates takes a numeric id and a channel w/ worker pool.
@@ -41,8 +42,9 @@ func (w Worker) start() {
 			select {
 			case job := <-w.jobQueue:
 				// Dispatcher has added a job to my jobQueue.
-				fmt.Printf("worker%d: started %s\n", w.id, job.method)
-				payloadHandler()
+				fmt.Printf("worker: %d method: %s\n", w.id, job.data["method"])
+				payloadHandler(job.data)
+			
 			case <-w.quitChan:
 				// We have been asked to stop.
 				fmt.Printf("worker%d stopping\n", w.id)
