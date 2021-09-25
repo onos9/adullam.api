@@ -1,4 +1,4 @@
-package db
+package model
 
 func course_category(){}
 

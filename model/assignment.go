@@ -1,4 +1,4 @@
-package db
+package model
 
 //- assignment_submission
 //- rating

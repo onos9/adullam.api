@@ -1,4 +1,4 @@
-package db
+package model
 
 //gives information about courses to which students registered and their grades.
 //Also students can provide rating to a course and provide feedback.

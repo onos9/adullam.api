@@ -51,6 +51,6 @@ func request(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleApiRequest(){
-	http.Handle("/api/v1/seminary", isAuthorized(request))
 	http.HandleFunc("/api/v1/auth", authenticate)
+	http.Handle("/api/v1/seminary", isAuthorized(request))
 }
